@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Izin Foto & Video - Masjid Raya Mujahidin</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  font-family:'Poppins',sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:
+  radial-gradient(circle at top left,#e7fff0,#f8fafc 40%),
+  #f5f7fb;
+  overflow-x:hidden;
+  color:#1f2937;
+}
+
+/* HERO */
+.hero-slider{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
+
+.hero-slider::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(
+    135deg,
+    rgba(0,0,0,.78),
+    rgba(0,0,0,.45)
+  );
+  z-index:1;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.2s ease;
+  transform:scale(1.08);
+}
+
+.slide.active{
+  opacity:1;
+}
+
+/* GLASS */
+.glass{
+  background:rgba(255,255,255,.10);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+/* PREMIUM CARD */
+.premium-card{
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:
+  0 20px 50px rgba(15,23,42,.08);
+}
+
+/* INPUT */
+.input-modern{
+  width:100%;
+  border:1px solid #e5e7eb;
+  border-radius:20px;
+  padding:16px 18px;
+  background:#fff;
+  transition:.3s ease;
+  outline:none;
+}
+
+.input-modern:focus{
+  border-color:#16a34a;
+  box-shadow:
+  0 0 0 4px rgba(22,163,74,.10);
+  transform:translateY(-1px);
+}
+
+/* BUTTON */
+.btn-premium{
+  background:
+  linear-gradient(
+    135deg,
+    #22c55e,
+    #15803d
+  );
+  box-shadow:
+  0 15px 35px rgba(22,163,74,.28);
+  transition:.35s ease;
+}
+
+.btn-premium:hover{
+  transform:translateY(-2px);
+  box-shadow:
+  0 20px 40px rgba(22,163,74,.35);
+}
+
+/* QRIS */
+.qris-card{
+  background:
+  linear-gradient(
+    145deg,
+    #ffffff,
+    #f2fff6
+  );
+  border:1px solid #dcfce7;
+}
+
+.rekening-number{
+  letter-spacing:3px;
+  text-shadow:
+  0 0 20px rgba(22,163,74,.15);
+}
+
+/* FLOAT */
+.floating{
+  animation:floating 4s ease-in-out infinite;
+}
+
+@keyframes floating{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+
+}
+
+/* POPUP */
+.popup{
+  animation:popupShow .35s ease;
+}
+
+@keyframes popupShow{
+
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.94);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+
+}
+
+/* LOADING */
+.spinner{
+  width:70px;
+  height:70px;
+  border:6px solid #dcfce7;
+  border-top:6px solid #16a34a;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  100%{
+    transform:rotate(360deg);
+  }
+}
+
+.show{
+  display:flex !important;
+}
+
+/* PROGRESS */
+#progressBar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:4px;
+  width:0%;
+  background:
+  linear-gradient(
+    90deg,
+    #22c55e,
+    #15803d
+  );
+  z-index:9999;
+  transition:width .2s;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- PROGRESS -->
+<div id="progressBar"></div>
+
+<!-- HERO -->
+<section class="hero-slider">
+
+  <!-- SLIDE -->
+  <div class="slide active"
+    style="background-image:
+    url('https://www.kontraktorkubahmasjid.com/wp-content/uploads/2017/12/interior-masjid-ontianak.png?q=80&w=1600&auto=format&fit=crop')">
+  </div>
+
+  <div class="slide"
+    style="background-image:
+    url('https://images.unsplash.com/photo-1512632578888-169bbbc64f33?q=80&w=1600&auto=format&fit=crop')">
+  </div>
+
+  <!-- CONTENT -->
+  <div class="relative z-10 h-full flex items-center">
+
+    <div class="max-w-7xl mx-auto px-6 text-white w-full">
+
+      <div class="max-w-3xl">
+
+        <div class="glass inline-block px-5 py-2 rounded-full mb-6 text-sm">
+          FORMULIR PERMOHONAN RESMI
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+          Izin Foto & Video
+          Masjid Raya Mujahidin
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray-200 leading-relaxed mb-10">
+          Pengajuan izin pengambilan foto dan video
+          secara online dan profesional.
+        </p>
+
+        <a
+          href="#formSection"
+          class="btn-premium px-8 py-5 rounded-2xl text-lg font-semibold inline-flex items-center gap-3 text-white"
+        >
+          Isi Form Sekarang →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FORM -->
+<section id="formSection" class="relative -mt-24 pb-20 px-5 z-20">
+
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-3 gap-8">
+
+    <!-- FORM -->
+    <div class="lg:col-span-2 premium-card rounded-[35px] p-8 md:p-10">
+
+      <div class="flex items-center gap-4 mb-8">
+
+        <div class="w-16 h-16 rounded-3xl bg-green-100 flex items-center justify-center text-3xl">
+          📷
+        </div>
+
+        <div>
+
+          <h2 class="text-3xl font-bold text-gray-800">
+            Form Permohonan
+          </h2>
+
+          <p class="text-gray-500">
+            Lengkapi data berikut dengan benar
+          </p>
+
+        </div>
+
+      </div>
+
+      <form id="izinForm" class="space-y-6">
+
+        <div class="grid md:grid-cols-2 gap-5">
+
+          <div>
+
+            <label class="font-medium text-gray-700 block mb-2">
+              Nama Lengkap
+            </label>
+
+            <input
+              type="text"
+              name="nama"
+              id="nama"
+              required
+              placeholder="Masukkan nama lengkap"
+              class="input-modern"
+            >
+
+          </div>
+
+          <div>
+
+            <label class="font-medium text-gray-700 block mb-2">
+              WhatsApp
+            </label>
+
+            <input
+              type="text"
+              name="whatsapp"
+              id="whatsapp"
+              required
+              placeholder="08xxxxxxxxxx"
+              class="input-modern"
+            >
+
+          </div>
+
+        </div>
+
+        <div>
+
+          <label class="font-medium text-gray-700 block mb-2">
+            Alamat
+          </label>
+
+          <textarea
+            name="alamat"
+            id="alamat"
+            rows="4"
+            required
+            placeholder="Masukkan alamat lengkap"
+            class="input-modern"
+          ></textarea>
+
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-5">
+
+          <div>
+
+            <label class="font-medium text-gray-700 block mb-2">
+              Studio / Instansi
+            </label>
+
+            <input
+              type="text"
+              name="instansi"
+              id="instansi"
+              placeholder="Nama studio / instansi"
+              class="input-modern"
+            >
+
+          </div>
+
+          <div>
+
+            <label class="font-medium text-gray-700 block mb-2">
+              Jenis Kegiatan
+            </label>
+
+            <select
+              name="kegiatan"
+              id="kegiatan"
+              class="input-modern"
+            >
+              <option>Prewedding</option>
+              <option>Video Shooting</option>
+              <option>Wisuda</option>
+              <option>Konten Sosial Media</option>
+              <option>Dokumentasi</option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5">
+
+          <div>
+
+            <label class="font-medium text-gray-700 block mb-2">
+              Tanggal
+            </label>
+
+            <input
+              type="date"
+              name="tanggal"
+              id="tanggal"
+              required
+              class="input-modern"
+            >
+
+          </div>
+
+          <div>
+
+            <label class="font-medium text-gray-700 block mb-2">
+              Jam
+            </label>
+
+            <input
+              type="time"
+              name="jam"
+              id="jam"
+              required
+              class="input-modern"
+            >
+
+          </div>
+
+          <div>
+
+            <label class="font-medium text-gray-700 block mb-2">
+              Jumlah Orang
+            </label>
+
+            <input
+              type="number"
+              name="jumlah"
+              id="jumlah"
+              placeholder="10"
+              class="input-modern"
+            >
+
+          </div>
+
+        </div>
+
+        <!-- NOMINAL INFAQ -->
+        <div>
+
+          <label class="font-medium text-gray-700 block mb-3">
+            Pilih Nominal Infaq
+          </label>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+            <label class="cursor-pointer">
+              <input type="radio" name="infaq" value="Rp100.000" class="peer hidden" checked>
+
+              <div class="border-2 border-gray-200 rounded-2xl p-4 text-center font-semibold transition
+              peer-checked:bg-green-600
+              peer-checked:text-white
+              peer-checked:border-green-600
+              hover:border-green-400">
+
+                Rp100K
+
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input type="radio" name="infaq" value="Rp150.000" class="peer hidden">
+
+              <div class="border-2 border-gray-200 rounded-2xl p-4 text-center font-semibold transition
+              peer-checked:bg-green-600
+              peer-checked:text-white
+              peer-checked:border-green-600
+              hover:border-green-400">
+
+                Rp150K
+
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input type="radio" name="infaq" value="Rp200.000" class="peer hidden">
+
+              <div class="border-2 border-gray-200 rounded-2xl p-4 text-center font-semibold transition
+              peer-checked:bg-green-600
+              peer-checked:text-white
+              peer-checked:border-green-600
+              hover:border-green-400">
+
+                Rp200K
+
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input type="radio" name="infaq" value="Rp300.000" class="peer hidden">
+
+              <div class="border-2 border-gray-200 rounded-2xl p-4 text-center font-semibold transition
+              peer-checked:bg-green-600
+              peer-checked:text-white
+              peer-checked:border-green-600
+              hover:border-green-400">
+
+                Rp300K
+
+              </div>
+            </label>
+
+          </div>
+
+        </div>
+
+        <div>
+
+          <label class="font-medium text-gray-700 block mb-2">
+            Catatan Tambahan
+          </label>
+
+          <textarea
+            name="catatan"
+            id="catatan"
+            rows="4"
+            placeholder="Tambahkan informasi tambahan"
+            class="input-modern"
+          ></textarea>
+
+        </div>
+
+        <!-- INFORMASI PENTING -->
+        <div class="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-100 rounded-2xl p-5 shadow-sm">
+
+          <div class="flex items-start gap-4">
+
+            <!-- ICON -->
+            <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center shrink-0">
+
+              <svg xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-green-700"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2">
+
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+
+              </svg>
+
+            </div>
+
+            <!-- TEXT -->
+            <div>
+
+              <h4 class="text-gray-800 font-semibold text-lg mb-1">
+                Informasi Penting
+              </h4>
+
+              <p class="text-gray-500 leading-relaxed text-sm md:text-base">
+
+                Pastikan semua data yang Anda masukkan sudah benar.
+                Permohonan akan diproses oleh admin setelah form dikirim.
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <button
+          type="submit"
+          class="w-full btn-premium text-white rounded-2xl p-5 text-lg font-semibold"
+        >
+          Kirim Permohonan
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="space-y-6">
+
+      <!-- INFO -->
+      <div class="bg-gradient-to-br from-green-700 to-emerald-900 text-white rounded-[35px] p-8 shadow-2xl">
+
+        <h3 class="text-2xl font-bold mb-4">
+          Infaq Foto & Video
+        </h3>
+
+        <div class="text-6xl font-extrabold mb-5">
+          Rp100K
+        </div>
+
+        <p class="text-green-100 leading-relaxed">
+          Infaq digunakan untuk operasional dan kemakmuran Masjid Raya Mujahidin.
+        </p>
+
+      </div>
+
+      <!-- QRIS -->
+      <div class="qris-card rounded-[35px] p-8 shadow-2xl floating">
+
+        <div class="text-center mb-6">
+
+          <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            💳 Pembayaran Resmi
+          </div>
+
+          <h3 class="text-3xl font-bold text-gray-800">
+            Pembayaran QRIS
+          </h3>
+
+          <p class="text-gray-500 mt-2">
+            Scan QRIS atau transfer rekening resmi
+          </p>
+
+        </div>
+
+        <!-- QR -->
+        <div class="bg-white p-4 rounded-[28px] shadow-lg border border-green-100">
+
+          <img
+            src="https://masjid.mujahidinpontianak.com/wp-content/uploads/2025/04/qris-Yayasan-Mujahidin.jpeg"
+            class="w-full rounded-2xl"
+          >
+
+        </div>
+
+        <!-- REKENING PREMIUM -->
+        <div class="mt-8">
+
+          <div class="bg-gradient-to-br from-green-600 to-emerald-700 rounded-[32px] p-6 md:p-8 text-center shadow-2xl relative overflow-hidden">
+
+            <!-- ORNAMEN -->
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full"></div>
+            <div class="absolute -bottom-12 -left-12 w-44 h-44 bg-white/10 rounded-full"></div>
+
+            <!-- LABEL -->
+            <div class="relative z-10">
+
+              <div class="uppercase tracking-[6px] text-white/80 text-xs md:text-sm font-medium mb-5">
+                Bank Kalbar Syariah
+              </div>
+
+              <!-- NOMOR REKENING -->
+              <div class="text-4xl md:text-3xl font-extrabold text-white tracking-[3px] leading-tight break-all mb-5">
+
+                882013056927
+
+              </div>
+
+              <!-- NAMA -->
+              <div class="text-white/90 text-lg md:text-1xl font-medium leading-relaxed">
+                a.n Yayasan Mujahidin Kalbar
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- KETENTUAN -->
+      <div class="premium-card rounded-[35px] p-8">
+
+        <h3 class="text-3xl font-bold text-gray-800 mb-8">
+          Ketentuan
+        </h3>
+
+        <div class="space-y-6">
+
+          <div class="flex items-start gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center text-xl">
+              ✅
+            </div>
+
+            <div>
+
+              <h4 class="font-semibold text-gray-800 text-lg">
+                Menjaga kesucian masjid
+              </h4>
+
+              <p class="text-gray-500 mt-1">
+                Seluruh kegiatan wajib menjaga adab dan kesucian area masjid.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="flex items-start gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center text-xl">
+              ✅
+            </div>
+
+            <div>
+
+              <h4 class="font-semibold text-gray-800 text-lg">
+                Tidak mengganggu jamaah
+              </h4>
+
+              <p class="text-gray-500 mt-1">
+                Aktivitas dokumentasi tidak boleh mengganggu kegiatan ibadah.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="flex items-start gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center text-xl">
+              ✅
+            </div>
+
+            <div>
+
+              <h4 class="font-semibold text-gray-800 text-lg">
+                Berpakaian sopan
+              </h4>
+
+              <p class="text-gray-500 mt-1">
+                Seluruh peserta wajib mengenakan pakaian yang sopan dan pantas.
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="flex items-start gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center text-xl">
+              ✅
+            </div>
+
+            <div>
+
+              <h4 class="font-semibold text-gray-800 text-lg">
+                Menjaga kebersihan area
+              </h4>
+
+              <p class="text-gray-500 mt-1">
+                Pastikan area tetap bersih dan rapi setelah kegiatan selesai.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FLOATING WA -->
+<a
+  href="https://wa.me/6281350336137"
+  target="_blank"
+  class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl transition hover:scale-110"
+>
+
+  <svg xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    fill="white"
+    viewBox="0 0 24 24">
+
+    <path d="M20.52 3.48A11.8 11.8 0 0 0 12.06 0C5.48 0 .11 5.37.11 11.95c0 2.11.55 4.16 1.6 5.97L0 24l6.25-1.64a11.93 11.93 0 0 0 5.81 1.49h.01c6.58 0 11.95-5.37 11.95-11.95 0-3.19-1.24-6.18-3.5-8.42z"/>
+  </svg>
+
+</a>
+
+<!-- LOADING -->
+<div
+  id="loading"
+  class="hidden fixed inset-0 bg-black/60 items-center justify-center z-50"
+>
+
+  <div class="bg-white rounded-[30px] p-10 text-center max-w-sm w-full mx-5">
+
+    <div class="spinner mx-auto mb-6"></div>
+
+    <h3 class="text-2xl font-bold text-gray-800 mb-3">
+      Mengirim Permohonan...
+    </h3>
+
+    <p class="text-gray-500">
+      Mohon tunggu sebentar
+    </p>
+
+  </div>
+
+</div>
+
+<!-- SUCCESS -->
+<div
+  id="popup"
+  class="hidden fixed inset-0 bg-black/60 items-center justify-center z-50 p-5"
+>
+
+  <div class="popup bg-white rounded-[35px] max-w-md w-full p-8 text-center shadow-2xl">
+
+    <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-5xl">
+      🎉
+    </div>
+
+    <h2 class="text-3xl font-bold text-gray-800 mb-4">
+      Permohonan Berhasil!
+    </h2>
+
+    <p class="text-gray-600 leading-relaxed mb-8">
+      Data berhasil dikirim dan akan diarahkan ke WhatsApp Admin.
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+
+// HERO SLIDER
+const slides = document.querySelectorAll('.slide');
+
+let currentSlide = 0;
+
+setInterval(() => {
+
+  slides[currentSlide].classList.remove('active');
+
+  currentSlide = (currentSlide + 1) % slides.length;
+
+  slides[currentSlide].classList.add('active');
+
+}, 5000);
+
+// FORM
+const form = document.getElementById('izinForm');
+const popup = document.getElementById('popup');
+const loading = document.getElementById('loading');
+const progressBar = document.getElementById('progressBar');
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  // Tampilkan loading & progress bar
+  loading.classList.remove('hidden');
+  loading.classList.add('show');
+  progressBar.style.width = '0%';
+
+  let width = 0;
+  const interval = setInterval(() => {
+    width += 10;
+    progressBar.style.width = width + '%';
+    if(width >= 100) clearInterval(interval);
+  }, 120);
+
+  // Kumpulkan data dari form
+  const data = {
+    nama: document.getElementById('nama').value,
+    whatsapp: document.getElementById('whatsapp').value,
+    alamat: document.getElementById('alamat').value,
+    instansi: document.getElementById('instansi').value,
+    kegiatan: document.getElementById('kegiatan').value,
+    tanggal: document.getElementById('tanggal').value,
+    jam: document.getElementById('jam').value,
+    jumlah: document.getElementById('jumlah').value,
+    catatan: document.getElementById('catatan').value,
+    infaq: document.querySelector('input[name="infaq"]:checked')?.value || 'Rp100.000'
+  };
+
+  // Siapkan pesan WhatsApp
+  const pesan = `*FORM IZIN FOTO & VIDEO*
+
+Nama : ${data.nama}
+WhatsApp : ${data.whatsapp}
+Alamat : ${data.alamat}
+
+Studio / Instansi : ${data.instansi}
+Jenis Kegiatan : ${data.kegiatan}
+Tanggal : ${data.tanggal}
+Jam : ${data.jam}
+Jumlah Orang : ${data.jumlah}
+Nominal Infaq : ${data.infaq}
+Catatan :
+${data.catatan}`;
+
+  const waUrl = `https://wa.me/6281350336137?text=${encodeURIComponent(pesan)}`;
+
+  // Kirim ke Google Sheets secara asinkron (tidak memblokir)
+  const formData = new FormData(form);
+  fetch("https://script.google.com/macros/s/AKfycbwqe3MkahsMF_2mcs1EVOxVMsei6mSG977_MTqRUz1eaK6wEzbmAz8RFYQhapFpmff3_w/exec", {
+    method: "POST",
+    body: formData,
+    mode: 'no-cors' // mencegah error CORS, meski respons tidak bisa dibaca
+  }).catch(err => console.error("Google Sheets error:", err));
+
+  // Setelah 1,5 detik, sembunyikan loading, tampilkan popup, lalu redirect ke WA
+  setTimeout(() => {
+    loading.classList.add('hidden');
+    loading.classList.remove('show');
+    popup.classList.remove('hidden');
+    popup.classList.add('show');
+
+    // Reset form
+    form.reset();
+
+    // Redirect ke WhatsApp setelah 1,8 detik
+    setTimeout(() => {
+      window.location.href = waUrl;
+    }, 1800);
+  }, 1500);
+});
+
+</script>
+
+</body>
+</html>
