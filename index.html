@@ -210,6 +210,13 @@ body{
   transition:width .2s;
 }
 
+/* NOMOR REKENING 1 BARIS */
+.rekening-satu-baris {
+  white-space: nowrap;
+  word-break: keep-all;
+  letter-spacing: 2px;
+}
+
 </style>
 
 </head>
@@ -633,7 +640,7 @@ body{
 
         </div>
 
-        <!-- REKENING PREMIUM -->
+        <!-- REKENING PREMIUM - DIPERBAIKI 1 BARIS -->
         <div class="mt-8">
 
           <div class="bg-gradient-to-br from-green-600 to-emerald-700 rounded-[32px] p-6 md:p-8 text-center shadow-2xl relative overflow-hidden">
@@ -646,18 +653,16 @@ body{
             <div class="relative z-10">
 
               <div class="uppercase tracking-[6px] text-white/80 text-xs md:text-sm font-medium mb-5">
-                Bank Kalbar Syariah
+                BANK KALBAR SYARIAH
               </div>
 
-              <!-- NOMOR REKENING -->
-              <div class="text-4xl md:text-3xl font-extrabold text-white tracking-[3px] leading-tight break-all mb-5">
-
+              <!-- NOMOR REKENING - SEKARANG 1 BARIS TIDAK PUTUS -->
+              <div class="text-2xl md:text-3xl font-extrabold text-white tracking-wider leading-tight mb-5 rekening-satu-baris overflow-x-auto pb-2">
                 882013056927
-
               </div>
 
               <!-- NAMA -->
-              <div class="text-white/90 text-lg md:text-1xl font-medium leading-relaxed">
+              <div class="text-white/90 text-base md:text-lg font-medium leading-relaxed">
                 a.n Yayasan Mujahidin Kalbar
               </div>
 
@@ -828,6 +833,12 @@ body{
       Data berhasil dikirim dan akan diarahkan ke WhatsApp Admin.
     </p>
 
+    <!-- TAMBAHAN LINK MANUAL UNTUK IFRAME -->
+    <div id="manualLink" class="hidden mt-4 p-3 bg-yellow-50 rounded-xl">
+      <p class="text-sm text-gray-600 mb-2">🔔 Jika tidak otomatis terbuka:</p>
+      <a href="#" id="whatsappLink" target="_blank" class="text-green-600 font-semibold underline break-all">Klik di sini untuk membuka WhatsApp</a>
+    </div>
+
   </div>
 
 </div>
@@ -854,6 +865,10 @@ const form = document.getElementById('izinForm');
 const popup = document.getElementById('popup');
 const loading = document.getElementById('loading');
 const progressBar = document.getElementById('progressBar');
+const manualLinkDiv = document.getElementById('manualLink');
+const whatsappLink = document.getElementById('whatsappLink');
+
+let waUrlSaved = '';
 
 form.addEventListener('submit', function(e){
   e.preventDefault();
@@ -900,14 +915,17 @@ Nominal Infaq : ${data.infaq}
 Catatan :
 ${data.catatan}`;
 
-  const waUrl = `https://wa.me/6281350336137?text=${encodeURIComponent(pesan)}`;
+  waUrlSaved = `https://wa.me/6281350336137?text=${encodeURIComponent(pesan)}`;
+  
+  // Update link manual di popup
+  whatsappLink.href = waUrlSaved;
 
   // Kirim ke Google Sheets secara asinkron (tidak memblokir)
   const formData = new FormData(form);
   fetch("https://script.google.com/macros/s/AKfycbwqe3MkahsMF_2mcs1EVOxVMsei6mSG977_MTqRUz1eaK6wEzbmAz8RFYQhapFpmff3_w/exec", {
     method: "POST",
     body: formData,
-    mode: 'no-cors' // mencegah error CORS, meski respons tidak bisa dibaca
+    mode: 'no-cors'
   }).catch(err => console.error("Google Sheets error:", err));
 
   // Setelah 1,5 detik, sembunyikan loading, tampilkan popup, lalu redirect ke WA
@@ -920,10 +938,28 @@ ${data.catatan}`;
     // Reset form
     form.reset();
 
-    // Redirect ke WhatsApp setelah 1,8 detik
+    // Redirect ke WhatsApp dengan dukungan iframe
     setTimeout(() => {
-      window.location.href = waUrl;
-    }, 1800);
+      try {
+        // Coba redirect ke top level (iframe → parent window)
+        if (window.top && window.top !== window.self) {
+          window.top.location.href = waUrlSaved;
+        } else {
+          window.location.href = waUrlSaved;
+        }
+      } catch(e) {
+        console.log("Redirect diblokir oleh iframe, menampilkan link manual", e);
+        manualLinkDiv.classList.remove('hidden');
+      }
+      
+      // Fallback: setelah 2 detik jika masih di halaman yang sama, tampilkan link manual
+      setTimeout(() => {
+        if (manualLinkDiv.classList.contains('hidden') && window.location.href.indexOf('wa.me') === -1) {
+          manualLinkDiv.classList.remove('hidden');
+        }
+      }, 2000);
+      
+    }, 500);
   }, 1500);
 });
 
